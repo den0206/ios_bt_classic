@@ -1,0 +1,24 @@
+name: ios_bt_classic
+description: A new Flutter plugin project.
+version: 0.0.1
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+  flutter: '>=2.5.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.1.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+  pigeon: ^8.0.0
+
+flutter:
+  plugin:
+    platforms:
+      ios:
+        pluginClass: IosBtClassicPlugin

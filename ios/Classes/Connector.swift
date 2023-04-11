@@ -9,63 +9,63 @@ import Foundation
 import Flutter
 import ExternalAccessory
 
-public protocol Connector {
+protocol Connector {
     var onDidConnectListener: OnDidConnectListener? { get set }
     var onDidDeviceListener: OnDidDeviceListener? { get set }
 }
 
-public class ConnectorImpl: NSObject, Connector {
-    public var onDidConnectListener: OnDidConnectListener?
-    public var onDidDeviceListener: OnDidDeviceListener?
+class ConnectorImpl: NSObject, Connector {
+    var onDidConnectListener: OnDidConnectListener?
+    var onDidDeviceListener: OnDidDeviceListener?
     private override init() {}
     static let instance = ConnectorImpl()
 }
 
 
-public protocol OnDidConnectListener: NSObjectProtocol, FlutterStreamHandler {
-  func onDidConnect(_ isConnected: Bool)
+protocol OnDidConnectListener: NSObjectProtocol, FlutterStreamHandler {
+    func onDidConnect(_ isConnected: Bool)
 }
 
-public class OnDidConnectListenerImpl: NSObject, OnDidConnectListener {
-  public static let CHANNEL_NAME: String = "com.example/did_connect"
-  public var eventSink: FlutterEventSink?
-
-  public func onDidConnect(_ isConnected: Bool) {
-    eventSink?(isConnected)
-  }
-
-  public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-    eventSink = events
-    return nil
-  }
-
-  public func onCancel(withArguments arguments: Any?) -> FlutterError? {
-    eventSink = nil
-    return nil
-  }
+class OnDidConnectListenerImpl: NSObject, OnDidConnectListener {
+    static let CHANNEL_NAME: String = "com.example/did_connect"
+    var eventSink: FlutterEventSink?
+    
+    func onDidConnect(_ isConnected: Bool) {
+        eventSink?(isConnected)
+    }
+    
+    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        eventSink = events
+        return nil
+    }
+    
+    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        eventSink = nil
+        return nil
+    }
 }
 
 
 
-public protocol OnDidDeviceListener: NSObjectProtocol, FlutterStreamHandler {
-  func onDidDeviceConnect(_ device: Accesory)
+protocol OnDidDeviceListener: NSObjectProtocol, FlutterStreamHandler {
+    func onDidDeviceConnect(_ device: Accesory)
 }
 
-public class OnDidDeviceListenerImpl: NSObject, OnDidDeviceListener {
-  public static let CHANNEL_NAME: String = "com.example/did_device"
-  public var eventSink: FlutterEventSink?
-
-  public func onDidDeviceConnect(_ device: Accesory) {
-    eventSink?(device)
-  }
-
-  public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-    eventSink = events
-    return nil
-  }
-
-  public func onCancel(withArguments arguments: Any?) -> FlutterError? {
-    eventSink = nil
-    return nil
-  }
+class OnDidDeviceListenerImpl: NSObject, OnDidDeviceListener {
+    static let CHANNEL_NAME: String = "com.example/did_device"
+    var eventSink: FlutterEventSink?
+    
+    func onDidDeviceConnect(_ device: Accesory) {
+        eventSink?(device)
+    }
+    
+    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        eventSink = events
+        return nil
+    }
+    
+    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        eventSink = nil
+        return nil
+    }
 }

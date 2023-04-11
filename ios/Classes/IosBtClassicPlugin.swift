@@ -157,7 +157,7 @@ public class IosBtClassicPlugin: NSObject, FlutterPlugin,IosBTClassicAPI {
     
     
     private func convertAccesary(ea:EAAccessory) -> Accesory {
-        return Accesory(isConnected: ea.isConnected, connectionID: Int32(ea.connectionID), name: ea.name, manufacturer: ea.manufacturer, modelNumber: ea.modelNumber, serialNumber: ea.serialNumber, firmwareRevision: ea.firmwareRevision, hardwareRevision: ea.hardwareRevision, protocolStrings: ea.protocolStrings)
+        return Accesory(isConnected: ea.isConnected, connectionID: Int64(ea.connectionID), name: ea.name, manufacturer: ea.manufacturer, modelNumber: ea.modelNumber, serialNumber: ea.serialNumber, firmwareRevision: ea.firmwareRevision, hardwareRevision: ea.hardwareRevision, protocolStrings: ea.protocolStrings)
     }
     
 }
